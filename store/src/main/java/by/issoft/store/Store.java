@@ -36,6 +36,18 @@ public class Store {
         }
     }
 
+    public void printSorted()    {
+        for (var category : categoryList) {
+            category.printSorted();
+        }
+    }
+
+    public void printTheBest()    {
+        for (var category : categoryList) {
+            category.printTheBest();
+        }
+    }
+
     private Map<Category, Integer> createProductList() {
         Map<Category, Integer> product = new HashMap<>();
 
@@ -46,14 +58,9 @@ public class Store {
         for (Class<? extends Category> type : subTypes) {
             try {
                 Random random = new Random();
-                product.put(type.getConstructor().newInstance(), random.nextInt(1,10));
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+                product.put(type.getConstructor().newInstance(), random.nextInt(1, 10));
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
                 e.printStackTrace();
             }
         }
