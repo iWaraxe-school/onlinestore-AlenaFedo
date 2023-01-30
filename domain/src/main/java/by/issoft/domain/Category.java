@@ -1,8 +1,7 @@
 package by.issoft.domain;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class Category {
 
@@ -29,6 +28,27 @@ public abstract class Category {
         for (Product product : productList) {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
         }
+    }
+
+    public void printSorted() {
+        System.out.println("Sorted Category " + name + ":");
+/*  still not implemented
+        Set<Product> prSet = new TreeSet<>(
+                new Comparator<Product>() {
+                    @Override
+                    public int compare(Product o1, Product o2) {
+                       return o1.compareTo(o2);
+                    }
+                }
+        );
+*/
+
+        }
+
+    public void printTheBest() {
+        System.out.println("5 Top products in Category " + name + ":");
+
+        //still not implemented
     }
 }
 

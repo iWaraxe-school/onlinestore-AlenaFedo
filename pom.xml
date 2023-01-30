@@ -12,6 +12,7 @@
         <module>domain</module>
         <module>ConsoleApp</module>
         <module>store</module>
+        <module>XMLHandling</module>
     </modules>
      <properties>
         <maven.compiler.source>17</maven.compiler.source>
