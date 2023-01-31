@@ -17,6 +17,10 @@ public abstract class Category {
         return name;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
     public void addProductToCategory(Product product) {
         this.productList.add(product);
     }
@@ -30,26 +34,7 @@ public abstract class Category {
         }
     }
 
-    public void printSorted() {
-        System.out.println("Sorted Category " + name + ":");
-/*  still not implemented
-        Set<Product> prSet = new TreeSet<>(
-                new Comparator<Product>() {
-                    @Override
-                    public int compare(Product o1, Product o2) {
-                       return o1.compareTo(o2);
-                    }
-                }
-        );
-*/
 
-        }
-
-    public void printTheBest() {
-        System.out.println("5 Top products in Category " + name + ":");
-
-        //still not implemented
-    }
 }
 
 
