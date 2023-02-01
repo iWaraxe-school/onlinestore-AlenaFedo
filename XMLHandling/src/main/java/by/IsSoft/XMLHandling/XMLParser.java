@@ -1,6 +1,8 @@
 package by.IsSoft.XMLHandling;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 public class XMLParser {
 
-    public static Map<String, Enum.SortingType> GetSortingorder()  {
+    public static Map<String, Enum.SortingType> GetSortingOrder()  {
 
         try{
 
@@ -23,14 +25,19 @@ public class XMLParser {
             Map<String, Enum.SortingType> map = new LinkedHashMap<>();
             Document doc = db.parse(file);
 
-            String name = doc.getElementsByTagName("name").item(0).getTextContent();
-            String price = doc.getElementsByTagName("price").item(0).getTextContent();
-            String rate = doc.getElementsByTagName("rate").item(0).getTextContent();
+            NodeList nodeList = doc.getElementsByTagName("sort");
 
-            map.put("name", Enum.SortingType.valueOf(name));
-            map.put("price", Enum.SortingType.valueOf(price));
-            map.put("rate", Enum.SortingType.valueOf(rate));
+            Node nodeSort = nodeList.item(0);
 
+            if (nodeSort.getNodeType() != Node.TEXT_NODE) {
+
+            NodeList props = nodeSort.getChildNodes();
+
+            for(int j = 0; j < props.getLength(); j++) {
+                Node prop = props.item(j);
+                if (prop.getNodeType() != Node.TEXT_NODE){
+                    map.put(prop.getNodeName(), Enum.SortingType.valueOf(prop.getTextContent()));
+            }}}
             return map;
         }}
         catch (ParserConfigurationException | IOException | SAXException  e){
@@ -38,4 +45,6 @@ public class XMLParser {
         }
         return null;
     }
+
+
 }

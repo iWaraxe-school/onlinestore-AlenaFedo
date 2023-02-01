@@ -15,7 +15,7 @@ public class StoreApp {
 
         store.fillStore();
 
-        store.printAll();
+        //store.printAll();
 
         BufferedReader br = new BufferedReader(new
                 InputStreamReader(System.in));
@@ -37,10 +37,7 @@ public class StoreApp {
             }
         }
         while (!str.equals("quit"));
-
     }
-
-
 }
 
 

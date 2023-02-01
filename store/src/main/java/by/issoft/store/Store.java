@@ -1,5 +1,7 @@
 package by.issoft.store;
 
+import by.IsSoft.XMLHandling.ProductComparator;
+import by.IsSoft.XMLHandling.ProductRateComparator;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 
@@ -36,15 +38,37 @@ public class Store {
         }
     }
 
-    public void printSorted()    {
-        for (var category : categoryList) {
-            category.printSorted();
+    public   List<Product> getAllProducts(){
+
+        List<Product> listProducts= new ArrayList<>();
+
+        for (var category : categoryList){
+            listProducts.addAll(category.getProductList());
         }
+
+        return listProducts;
     }
 
-    public void printTheBest()    {
-        for (var category : categoryList) {
-            category.printTheBest();
+    public void printSorted()    {
+
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductComparator());
+
+        for (var product:allProducts) {
+            System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
+
+        }
+
+    }
+
+
+    public void printTheBest() {
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductRateComparator());
+
+        for (var product : allProducts) {
+            System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
+
         }
     }
 
