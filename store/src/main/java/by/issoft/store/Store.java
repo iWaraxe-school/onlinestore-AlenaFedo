@@ -1,7 +1,7 @@
 package by.issoft.store;
 
 import by.IsSoft.XMLHandling.ProductComparator;
-import by.IsSoft.XMLHandling.ProductRateComparator;
+import by.IsSoft.XMLHandling.ProductPriceComparator;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 
@@ -64,11 +64,12 @@ public class Store {
 
     public void printTheBest() {
         List<Product> allProducts = getAllProducts();
-        allProducts.sort(new ProductRateComparator());
+        allProducts.sort(new ProductPriceComparator());
 
+        int i=1;
         for (var product : allProducts) {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
-
+            if(i++>4) break;
         }
     }
 

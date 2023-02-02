@@ -28,13 +28,22 @@ public class StoreApp {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            if (str.equals("sort")) {
+            switch (str)
+            {
+                case "sort":
+                    store.printSorted();
+                    break;
+                case "top":
+                    store.printTheBest();
+                    break;
+            }
+            /*if (str.equals("sort")) {
                 store.printSorted();
             } else {
                 if (str.equals("top")) {
                     store.printTheBest();
                 }
-            }
+            }*/
         }
         while (!str.equals("quit"));
     }
