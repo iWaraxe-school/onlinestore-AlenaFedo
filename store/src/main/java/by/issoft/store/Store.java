@@ -1,5 +1,7 @@
 package by.issoft.store;
 
+import by.IsSoft.XMLHandling.ProductComparator;
+import by.IsSoft.XMLHandling.ProductPriceComparator;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 
@@ -36,6 +38,41 @@ public class Store {
         }
     }
 
+    public   List<Product> getAllProducts(){
+
+        List<Product> listProducts= new ArrayList<>();
+
+        for (var category : categoryList){
+            listProducts.addAll(category.getProductList());
+        }
+
+        return listProducts;
+    }
+
+    public void printSorted()    {
+
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductComparator());
+
+        for (var product:allProducts) {
+            System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
+
+        }
+
+    }
+
+
+    public void printTheBest() {
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductPriceComparator());
+
+        int i=1;
+        for (var product : allProducts) {
+            System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
+            if(i++>4) break;
+        }
+    }
+
     private Map<Category, Integer> createProductList() {
         Map<Category, Integer> product = new HashMap<>();
 
@@ -46,14 +83,9 @@ public class Store {
         for (Class<? extends Category> type : subTypes) {
             try {
                 Random random = new Random();
-                product.put(type.getConstructor().newInstance(), random.nextInt(1,10));
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+                product.put(type.getConstructor().newInstance(), random.nextInt(1, 10));
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
                 e.printStackTrace();
             }
         }

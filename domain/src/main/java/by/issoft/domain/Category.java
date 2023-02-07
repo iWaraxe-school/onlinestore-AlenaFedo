@@ -1,8 +1,7 @@
 package by.issoft.domain;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class Category {
 
@@ -18,6 +17,10 @@ public abstract class Category {
         return name;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
     public void addProductToCategory(Product product) {
         this.productList.add(product);
     }
@@ -30,6 +33,8 @@ public abstract class Category {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
         }
     }
+
+
 }
 
 
