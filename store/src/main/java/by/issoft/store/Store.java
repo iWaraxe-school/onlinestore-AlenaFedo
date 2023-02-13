@@ -11,12 +11,23 @@ import java.util.*;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
-public class Store {
-    public Store() {
-        categoryList = new ArrayList<>();
+public final class Store {
+
+    private static Store instance;
+    public String storeName;
+
+    private Store(String name) {
+         this.storeName = name;
     }
 
-    private final List<Category> categoryList;
+    public static Store getInstance(String name) {
+        if (instance == null) {
+            instance = new Store(name);
+        }
+        return instance;
+    }
+
+    private final List<Category> categoryList = new ArrayList<>();;
     public void printAll(){
         for (var category : categoryList) {
             category.printCategory();

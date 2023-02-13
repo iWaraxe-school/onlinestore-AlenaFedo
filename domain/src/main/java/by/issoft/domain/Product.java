@@ -1,15 +1,24 @@
 package by.issoft.domain;
 
-public class Product {
+public class Product implements  BuilderProduct{
 
     private final String name;
-    private final double price;
-    private final double rate;
+    private double price;
+    private double rate;
 
 
     public String getName() {
         return name;
     }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
 
     public double getPrice() {
         return price;
@@ -19,9 +28,7 @@ public class Product {
         return rate;
     }
 
-    public Product(String name, double price, double rate) {
+    public Product(String name) {
         this.name = name;
-        this.price = price;
-        this.rate = rate;
     }
 }

@@ -7,11 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class StoreApp {
+public final class StoreApp {
 
     public static void main(String[] args) {
 
-        Store store = new Store();
+        Store store = Store.getInstance("Store1");
 
         store.fillStore();
 
@@ -37,13 +37,7 @@ public class StoreApp {
                     store.printTheBest();
                     break;
             }
-            /*if (str.equals("sort")) {
-                store.printSorted();
-            } else {
-                if (str.equals("top")) {
-                    store.printTheBest();
-                }
-            }*/
+
         }
         while (!str.equals("quit"));
     }
