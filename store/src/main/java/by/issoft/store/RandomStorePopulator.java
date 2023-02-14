@@ -13,11 +13,11 @@ public class RandomStorePopulator {
     Faker faker = new Faker();
 
     public Product getProguct(String categoryName) {
-        return new Product(
-                makeProduct(categoryName),
-                getPrice(),
-                getRate()
-        );
+        var product = new Product(
+                makeProduct(categoryName));
+        product.setPrice(getPrice());
+        product.setRate(getRate());
+        return product;
     }
 
     private String makeProduct(String categoryName) {

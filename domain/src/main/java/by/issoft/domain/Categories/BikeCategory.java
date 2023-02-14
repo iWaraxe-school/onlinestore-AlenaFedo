@@ -1,7 +1,15 @@
 package by.issoft.domain.Categories;
 
 import by.issoft.domain.Category;
-public class BikeCategory extends Category{
+import by.issoft.domain.CategoryExample;
 
-    public BikeCategory(){super("Bike");}
+public class BikeCategory extends Category implements CategoryExample {
+
+    public BikeCategory() {
+        super("Bike");
+    }
+
+    public void printName() {
+        System.out.println("You have created BikeCategory.");
+    }
 }
