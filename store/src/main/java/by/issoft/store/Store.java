@@ -3,6 +3,7 @@ package by.issoft.store;
 import by.IsSoft.XMLHandling.ProductComparator;
 import by.IsSoft.XMLHandling.ProductPriceComparator;
 import by.issoft.domain.Category;
+import by.issoft.domain.CategoryFactory;
 import by.issoft.domain.Product;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,7 +18,7 @@ public final class Store {
     public String storeName;
 
     private Store(String name) {
-         this.storeName = name;
+        this.storeName = name;
     }
 
     public static Store getInstance(String name) {
@@ -27,8 +28,10 @@ public final class Store {
         return instance;
     }
 
-    private final List<Category> categoryList = new ArrayList<>();;
-    public void printAll(){
+    private final List<Category> categoryList = new ArrayList<>();
+    ;
+
+    public void printAll() {
         for (var category : categoryList) {
             category.printCategory();
         }
@@ -49,23 +52,23 @@ public final class Store {
         }
     }
 
-    public   List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
 
-        List<Product> listProducts= new ArrayList<>();
+        List<Product> listProducts = new ArrayList<>();
 
-        for (var category : categoryList){
+        for (var category : categoryList) {
             listProducts.addAll(category.getProductList());
         }
 
         return listProducts;
     }
 
-    public void printSorted()    {
+    public void printSorted() {
 
         List<Product> allProducts = getAllProducts();
         allProducts.sort(new ProductComparator());
 
-        for (var product:allProducts) {
+        for (var product : allProducts) {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
 
         }
@@ -77,10 +80,10 @@ public final class Store {
         List<Product> allProducts = getAllProducts();
         allProducts.sort(new ProductPriceComparator());
 
-        int i=1;
+        int i = 1;
         for (var product : allProducts) {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
-            if(i++>4) break;
+            if (i++ > 4) break;
         }
     }
 
@@ -88,17 +91,15 @@ public final class Store {
         Map<Category, Integer> product = new HashMap<>();
 
         Reflections reflections = new Reflections("by.issoft.domain.Categories", new SubTypesScanner());
+        CategoryFactory categoryFactory = new CategoryFactory();
 
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
 
         for (Class<? extends Category> type : subTypes) {
-            try {
-                Random random = new Random();
-                product.put(type.getConstructor().newInstance(), random.nextInt(1, 10));
-            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                     InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            Random random = new Random();
+            String simpleName = type.getSimpleName();
+            Category category = categoryFactory.createCategory(simpleName);
+            product.put(category, random.nextInt(1, 10));
         }
         return product;
     }
