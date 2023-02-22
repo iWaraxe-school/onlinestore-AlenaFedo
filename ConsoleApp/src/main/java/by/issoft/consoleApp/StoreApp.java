@@ -1,6 +1,8 @@
 package by.issoft.consoleApp;
 
 
+import by.issoft.store.CleanAllOrders;
+import by.issoft.store.CreateOrder;
 import by.issoft.store.Store;
 
 import java.io.BufferedReader;
@@ -16,11 +18,13 @@ public final class StoreApp {
         store.fillStore();
 
         //store.printAll();
+        new CleanAllOrders().start();
+
 
         BufferedReader br = new BufferedReader(new
                 InputStreamReader(System.in));
         String str;
-        System.out.println("Type sort/top to work with Product's list.");
+        System.out.println("Type sort/top/order to work with Product's list.");
         System.out.println("Type 'quit' to finish.");
         do {
             try {
@@ -28,13 +32,15 @@ public final class StoreApp {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            switch (str)
-            {
+            switch (str) {
                 case "sort":
                     store.printSorted();
                     break;
                 case "top":
                     store.printTheBest();
+                    break;
+                case "order":
+                    new CreateOrder().start();
                     break;
             }
 

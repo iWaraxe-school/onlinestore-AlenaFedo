@@ -4,7 +4,6 @@ package by.issoft.domain;
 import java.util.*;
 
 public abstract class Category {
-
     private final String name;
     private final List<Product> productList;
 
