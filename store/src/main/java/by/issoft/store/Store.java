@@ -6,7 +6,6 @@ import by.issoft.domain.Category;
 import by.issoft.domain.CategoryFactory;
 import by.issoft.domain.Product;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import org.reflections.Reflections;
@@ -29,7 +28,7 @@ public final class Store {
     }
 
     private final List<Category> categoryList = new ArrayList<>();
-    ;
+
 
     public void printAll() {
         for (var category : categoryList) {
@@ -75,6 +74,13 @@ public final class Store {
 
     }
 
+
+    public Product getRandomProduct()  {
+        List<Product> allProducts = getAllProducts();
+
+        var random = new Random();
+        return allProducts.get(random.nextInt(allProducts.size()));
+    }
 
     public void printTheBest() {
         List<Product> allProducts = getAllProducts();
