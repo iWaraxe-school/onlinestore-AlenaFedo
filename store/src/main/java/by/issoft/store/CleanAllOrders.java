@@ -15,10 +15,10 @@ public class CleanAllOrders extends Thread {
                 throw new RuntimeException(e);
             }
 
-            System.out.println("Start Thread " + Thread.currentThread().getName());
+            System.out.println("Start cleaning " + Thread.currentThread().getName());
             purchasedGoods.cleanPurchasedGoods();
             purchasedGoods.printPurchasedGoods();
-            System.out.println("Finish thread " + Thread.currentThread().getName());
+            System.out.println("Finish cleaning " + Thread.currentThread().getName());
         }
     }
 }

@@ -21,7 +21,7 @@ public class PurchasedGoods {
 
     private final List<Product> listPurchasedGoods = new ArrayList<>();
 
-    public void addPurchasedGood(Product product) {
+    public synchronized void  addPurchasedGood(Product product) {
         listPurchasedGoods.add(product);
     }
 
@@ -33,7 +33,7 @@ public class PurchasedGoods {
         }
     }
 
-    public void cleanPurchasedGoods() {
+    public synchronized void cleanPurchasedGoods() {
         listPurchasedGoods.clear();
         System.out.println("Orders were deleted");
     }
