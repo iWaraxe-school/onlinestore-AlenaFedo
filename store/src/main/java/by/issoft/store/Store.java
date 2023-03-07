@@ -93,7 +93,7 @@ public final class Store {
         }
     }
 
-    private Map<Category, Integer> createProductList() {
+    public Map<Category, Integer> createProductList() {
         Map<Category, Integer> product = new HashMap<>();
 
         Reflections reflections = new Reflections("by.issoft.domain.Categories", new SubTypesScanner());
