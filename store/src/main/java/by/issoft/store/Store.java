@@ -43,7 +43,7 @@ public final class Store {
         for (Map.Entry<Category, Integer> entry : categoryProducts.entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 Product product =
-                        populator.getProguct(entry.getKey().getName());
+                        populator.getProduct(entry.getKey().getName());
                 entry.getKey().addProductToCategory(product);
             }
 

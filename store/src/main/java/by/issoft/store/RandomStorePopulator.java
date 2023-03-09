@@ -12,7 +12,7 @@ public class RandomStorePopulator {
 
     Faker faker = new Faker();
 
-    public Product getProguct(String categoryName) {
+    public Product getProduct(String categoryName) {
         var product = new Product(
                 makeProduct(categoryName));
         product.setPrice(getPrice());

@@ -3,7 +3,7 @@ package by.issoft.consoleApp;
 
 import by.issoft.store.CleanAllOrders;
 import by.issoft.store.CreateOrder;
-import by.issoft.store.DataBaseHelper;
+import by.issoft.store.DatabaseHelper;
 import by.issoft.store.Store;
 
 import java.io.BufferedReader;
@@ -19,7 +19,7 @@ public final class StoreApp {
 
         store.fillStore();
 
-        DataBaseHelper dbHelper = new DataBaseHelper(store);
+        DatabaseHelper dbHelper = new DatabaseHelper("jdbc:h2:~/OnlineStore", "sa", "");
 
         //store.printAll();
         new CleanAllOrders().start();
