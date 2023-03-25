@@ -7,6 +7,7 @@ import by.issoft.domain.CategoryFactory;
 import by.issoft.domain.Product;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -91,6 +92,33 @@ public final class Store {
             System.out.println("\t" + product.getName() + "\t" + product.getPrice() + "\t" + product.getRate());
             if (i++ > 4) break;
         }
+    }
+
+    public String storeSortedToString() {
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductPriceComparator());
+        StringBuilder sb = new StringBuilder();
+
+        for (var product : allProducts) {
+            sb.append("\t").append(product.getName()).append("\t").append(product.getPrice()).append("\t").append(product.getRate()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public String storeTopToString() {
+        List<Product> allProducts = getAllProducts();
+        allProducts.sort(new ProductPriceComparator());
+
+        List<Product> firstNElementsList = allProducts.stream().limit(5).collect(Collectors.toList());
+
+        StringBuilder sb = new StringBuilder();
+
+        for (var product : firstNElementsList) {
+            sb.append("\t").append(product.getName()).append("\t").append(product.getPrice()).append("\t").append(product.getRate()).append("\n");
+        }
+
+        return sb.toString();
     }
 
     public Map<Category, Integer> createProductList() {

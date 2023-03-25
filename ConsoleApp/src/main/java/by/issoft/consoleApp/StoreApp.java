@@ -1,8 +1,10 @@
 package by.issoft.consoleApp;
 
 
+import by.issoft.http.server.Server;
 import by.issoft.store.CleanAllOrders;
 import by.issoft.store.CreateOrder;
+
 import by.issoft.store.DatabaseHelper;
 import by.issoft.store.Store;
 
@@ -24,6 +26,7 @@ public final class StoreApp {
         //store.printAll();
         new CleanAllOrders().start();
 
+        Server.startServer();
 
         BufferedReader br = new BufferedReader(new
                 InputStreamReader(System.in));
@@ -50,6 +53,8 @@ public final class StoreApp {
 
         }
         while (!str.equals("quit"));
+
+        Server.stopServer();
     }
 }
 

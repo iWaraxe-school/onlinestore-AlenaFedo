@@ -33,6 +33,18 @@ public class PurchasedGoods {
         }
     }
 
+    public String getLastEnteredProduct() {
+        if (listPurchasedGoods.size() == 0)
+            return null;
+        Product product = listPurchasedGoods.get(listPurchasedGoods.size() - 1);
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\t").append(product.getName()).append("\t").append(product.getPrice()).append("\t").append(product.getRate()).append("\n");
+        return sb.toString();
+    }
+
+
     public synchronized void cleanPurchasedGoods() {
         listPurchasedGoods.clear();
         System.out.println("Orders were deleted");
